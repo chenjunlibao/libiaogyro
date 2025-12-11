@@ -37,7 +37,9 @@ build/main.o: Core/Src/main.c Core/Inc/main.h \
  Middlewares/Third_Party/FreeRTOS/Source/include/semphr.h \
  Middlewares/Third_Party/FreeRTOS/Source/include/queue.h \
  Middlewares/Third_Party/FreeRTOS/Source/include/event_groups.h \
- Middlewares/Third_Party/FreeRTOS/Source/include/timers.h
+ Middlewares/Third_Party/FreeRTOS/Source/include/timers.h src/gpio.h \
+ src/hal.h src/spi.h src/gpio.h src/platform.h src/can.h src/spi.h \
+ src/led_io.h src/led.h src/led.h
 Core/Inc/main.h:
 Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal.h:
 Core/Inc/stm32f1xx_hal_conf.h:
@@ -80,3 +82,13 @@ Middlewares/Third_Party/FreeRTOS/Source/include/semphr.h:
 Middlewares/Third_Party/FreeRTOS/Source/include/queue.h:
 Middlewares/Third_Party/FreeRTOS/Source/include/event_groups.h:
 Middlewares/Third_Party/FreeRTOS/Source/include/timers.h:
+src/gpio.h:
+src/hal.h:
+src/spi.h:
+src/gpio.h:
+src/platform.h:
+src/can.h:
+src/spi.h:
+src/led_io.h:
+src/led.h:
+src/led.h:

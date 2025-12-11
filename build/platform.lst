@@ -1,0 +1,60 @@
+ARM GAS  /tmp/ccUnCsJn.s 			page 1
+
+
+   1              		.cpu cortex-m3
+   2              		.eabi_attribute 20, 1
+   3              		.eabi_attribute 21, 1
+   4              		.eabi_attribute 23, 3
+   5              		.eabi_attribute 24, 1
+   6              		.eabi_attribute 25, 1
+   7              		.eabi_attribute 26, 1
+   8              		.eabi_attribute 30, 1
+   9              		.eabi_attribute 34, 1
+  10              		.eabi_attribute 18, 4
+  11              		.file	"platform.c"
+  12              		.text
+  13              	.Ltext0:
+  14              		.cfi_sections	.debug_frame
+  15              		.global	led_dev
+  16              		.global	spi_dev
+  17              		.section	.data.led_dev,"aw"
+  18              		.align	2
+  21              	led_dev:
+  22 0000 000C0140 		.word	1073810432
+  23 0004 0002     		.short	512
+  24 0006 0000     		.space	2
+  25 0008 00000000 		.word	led_io_driver
+  26              		.section	.data.spi_dev,"aw"
+  27              		.align	2
+  30              	spi_dev:
+  31 0000 00000000 		.space	4
+  32 0004 00000000 		.word	hspi2
+  33              		.text
+  34              	.Letext0:
+  35              		.file 1 "/usr/lib/gcc/arm-none-eabi/10.3.1/include/stdint.h"
+  36              		.file 2 "Middlewares/Third_Party/FreeRTOS/Source/include/queue.h"
+  37              		.file 3 "Middlewares/Third_Party/FreeRTOS/Source/include/semphr.h"
+  38              		.file 4 "Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS/cmsis_os.h"
+  39              		.file 5 "Drivers/CMSIS/Device/ST/STM32F1xx/Include/stm32f103xb.h"
+  40              		.file 6 "Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_def.h"
+  41              		.file 7 "Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_dma.h"
+  42              		.file 8 "Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_spi.h"
+  43              		.file 9 "./src/gpio.h"
+  44              		.file 10 "./src/spi.h"
+  45              		.file 11 "./src/led.h"
+  46              		.file 12 "./src/led_io.h"
+  47              		.file 13 "./src/platform.h"
+  48              		.file 14 "./src/platform.c"
+ARM GAS  /tmp/ccUnCsJn.s 			page 2
+
+
+DEFINED SYMBOLS
+                            *ABS*:0000000000000000 platform.c
+     /tmp/ccUnCsJn.s:21     .data.led_dev:0000000000000000 led_dev
+     /tmp/ccUnCsJn.s:30     .data.spi_dev:0000000000000000 spi_dev
+     /tmp/ccUnCsJn.s:18     .data.led_dev:0000000000000000 $d
+     /tmp/ccUnCsJn.s:27     .data.spi_dev:0000000000000000 $d
+
+UNDEFINED SYMBOLS
+led_io_driver
+hspi2

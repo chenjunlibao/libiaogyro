@@ -1,2 +1,7 @@
 #!/bin/sh
-openocd -f openocd.cfg -c "init; reset halt; program build/gyrocube.hex verify reset; shutdown"
+openocd -f openocd.cfg \
+  -c "init" \
+  -c "reset halt" \
+  -c "program build/gyrocube.hex verify" \
+  -c "reset run" \
+  -c "shutdown"

@@ -1,0 +1,213 @@
+ARM GAS  /tmp/ccnH2hLv.s 			page 1
+
+
+   1              		.cpu cortex-m3
+   2              		.eabi_attribute 20, 1
+   3              		.eabi_attribute 21, 1
+   4              		.eabi_attribute 23, 3
+   5              		.eabi_attribute 24, 1
+   6              		.eabi_attribute 25, 1
+   7              		.eabi_attribute 26, 1
+   8              		.eabi_attribute 30, 1
+   9              		.eabi_attribute 34, 1
+  10              		.eabi_attribute 18, 4
+  11              		.file	"led.c"
+  12              		.text
+  13              	.Ltext0:
+  14              		.cfi_sections	.debug_frame
+  15              		.section	.text.led_on,"ax",%progbits
+  16              		.align	1
+  17              		.global	led_on
+  18              		.arch armv7-m
+  19              		.syntax unified
+  20              		.thumb
+  21              		.thumb_func
+  22              		.fpu softvfp
+  24              	led_on:
+  25              	.LVL0:
+  26              	.LFB70:
+  27              		.file 1 "./src/led.c"
+   1:./src/led.c   **** #include "led.h"
+   2:./src/led.c   **** #include "cmsis_os.h"
+   3:./src/led.c   **** 
+   4:./src/led.c   **** void led_on(led_t *led)
+   5:./src/led.c   **** {
+  28              		.loc 1 5 1 view -0
+  29              		.cfi_startproc
+  30              		@ args = 0, pretend = 0, frame = 0
+  31              		@ frame_needed = 0, uses_anonymous_args = 0
+  32              		.loc 1 5 1 is_stmt 0 view .LVU1
+  33 0000 08B5     		push	{r3, lr}
+  34              	.LCFI0:
+  35              		.cfi_def_cfa_offset 8
+  36              		.cfi_offset 3, -8
+  37              		.cfi_offset 14, -4
+   6:./src/led.c   ****     led->driver->on(led);
+  38              		.loc 1 6 5 is_stmt 1 view .LVU2
+  39              		.loc 1 6 8 is_stmt 0 view .LVU3
+  40 0002 8368     		ldr	r3, [r0, #8]
+  41              		.loc 1 6 16 view .LVU4
+  42 0004 1B68     		ldr	r3, [r3]
+  43              		.loc 1 6 5 view .LVU5
+  44 0006 9847     		blx	r3
+  45              	.LVL1:
+   7:./src/led.c   **** }
+  46              		.loc 1 7 1 view .LVU6
+  47 0008 08BD     		pop	{r3, pc}
+  48              		.cfi_endproc
+  49              	.LFE70:
+  51              		.section	.text.led_off,"ax",%progbits
+  52              		.align	1
+ARM GAS  /tmp/ccnH2hLv.s 			page 2
+
+
+  53              		.global	led_off
+  54              		.syntax unified
+  55              		.thumb
+  56              		.thumb_func
+  57              		.fpu softvfp
+  59              	led_off:
+  60              	.LVL2:
+  61              	.LFB71:
+   8:./src/led.c   **** 
+   9:./src/led.c   **** void led_off(led_t *led)
+  10:./src/led.c   **** {
+  62              		.loc 1 10 1 is_stmt 1 view -0
+  63              		.cfi_startproc
+  64              		@ args = 0, pretend = 0, frame = 0
+  65              		@ frame_needed = 0, uses_anonymous_args = 0
+  66              		.loc 1 10 1 is_stmt 0 view .LVU8
+  67 0000 08B5     		push	{r3, lr}
+  68              	.LCFI1:
+  69              		.cfi_def_cfa_offset 8
+  70              		.cfi_offset 3, -8
+  71              		.cfi_offset 14, -4
+  11:./src/led.c   ****     led->driver->off(led);
+  72              		.loc 1 11 5 is_stmt 1 view .LVU9
+  73              		.loc 1 11 8 is_stmt 0 view .LVU10
+  74 0002 8368     		ldr	r3, [r0, #8]
+  75              		.loc 1 11 16 view .LVU11
+  76 0004 5B68     		ldr	r3, [r3, #4]
+  77              		.loc 1 11 5 view .LVU12
+  78 0006 9847     		blx	r3
+  79              	.LVL3:
+  12:./src/led.c   **** }
+  80              		.loc 1 12 1 view .LVU13
+  81 0008 08BD     		pop	{r3, pc}
+  82              		.cfi_endproc
+  83              	.LFE71:
+  85              		.section	.text.led_toggle,"ax",%progbits
+  86              		.align	1
+  87              		.global	led_toggle
+  88              		.syntax unified
+  89              		.thumb
+  90              		.thumb_func
+  91              		.fpu softvfp
+  93              	led_toggle:
+  94              	.LVL4:
+  95              	.LFB72:
+  13:./src/led.c   **** 
+  14:./src/led.c   **** void led_toggle(led_t *led)
+  15:./src/led.c   **** {
+  96              		.loc 1 15 1 is_stmt 1 view -0
+  97              		.cfi_startproc
+  98              		@ args = 0, pretend = 0, frame = 0
+  99              		@ frame_needed = 0, uses_anonymous_args = 0
+ 100              		.loc 1 15 1 is_stmt 0 view .LVU15
+ 101 0000 08B5     		push	{r3, lr}
+ 102              	.LCFI2:
+ 103              		.cfi_def_cfa_offset 8
+ 104              		.cfi_offset 3, -8
+ARM GAS  /tmp/ccnH2hLv.s 			page 3
+
+
+ 105              		.cfi_offset 14, -4
+  16:./src/led.c   ****     led->driver->toggle(led);
+ 106              		.loc 1 16 5 is_stmt 1 view .LVU16
+ 107              		.loc 1 16 8 is_stmt 0 view .LVU17
+ 108 0002 8368     		ldr	r3, [r0, #8]
+ 109              		.loc 1 16 16 view .LVU18
+ 110 0004 9B68     		ldr	r3, [r3, #8]
+ 111              		.loc 1 16 5 view .LVU19
+ 112 0006 9847     		blx	r3
+ 113              	.LVL5:
+  17:./src/led.c   **** }
+ 114              		.loc 1 17 1 view .LVU20
+ 115 0008 08BD     		pop	{r3, pc}
+ 116              		.cfi_endproc
+ 117              	.LFE72:
+ 119              		.section	.text.led_blink,"ax",%progbits
+ 120              		.align	1
+ 121              		.global	led_blink
+ 122              		.syntax unified
+ 123              		.thumb
+ 124              		.thumb_func
+ 125              		.fpu softvfp
+ 127              	led_blink:
+ 128              	.LVL6:
+ 129              	.LFB73:
+  18:./src/led.c   **** 
+  19:./src/led.c   **** void led_blink(led_t *led)
+  20:./src/led.c   **** {
+ 130              		.loc 1 20 1 is_stmt 1 view -0
+ 131              		.cfi_startproc
+ 132              		@ args = 0, pretend = 0, frame = 0
+ 133              		@ frame_needed = 0, uses_anonymous_args = 0
+ 134              		.loc 1 20 1 is_stmt 0 view .LVU22
+ 135 0000 10B5     		push	{r4, lr}
+ 136              	.LCFI3:
+ 137              		.cfi_def_cfa_offset 8
+ 138              		.cfi_offset 4, -8
+ 139              		.cfi_offset 14, -4
+ 140 0002 0446     		mov	r4, r0
+  21:./src/led.c   ****     led_on(led);
+ 141              		.loc 1 21 5 is_stmt 1 view .LVU23
+ 142 0004 FFF7FEFF 		bl	led_on
+ 143              	.LVL7:
+  22:./src/led.c   ****     osDelay(500);
+ 144              		.loc 1 22 5 view .LVU24
+ 145 0008 4FF4FA70 		mov	r0, #500
+ 146 000c FFF7FEFF 		bl	osDelay
+ 147              	.LVL8:
+  23:./src/led.c   ****     led_off(led);
+ 148              		.loc 1 23 5 view .LVU25
+ 149 0010 2046     		mov	r0, r4
+ 150 0012 FFF7FEFF 		bl	led_off
+ 151              	.LVL9:
+  24:./src/led.c   ****     osDelay(500);
+ 152              		.loc 1 24 5 view .LVU26
+ 153 0016 4FF4FA70 		mov	r0, #500
+ 154 001a FFF7FEFF 		bl	osDelay
+ARM GAS  /tmp/ccnH2hLv.s 			page 4
+
+
+ 155              	.LVL10:
+  25:./src/led.c   **** }
+ 156              		.loc 1 25 1 is_stmt 0 view .LVU27
+ 157 001e 10BD     		pop	{r4, pc}
+ 158              		.loc 1 25 1 view .LVU28
+ 159              		.cfi_endproc
+ 160              	.LFE73:
+ 162              		.text
+ 163              	.Letext0:
+ 164              		.file 2 "/usr/lib/gcc/arm-none-eabi/10.3.1/include/stdint.h"
+ 165              		.file 3 "Drivers/CMSIS/Device/ST/STM32F1xx/Include/stm32f103xb.h"
+ 166              		.file 4 "./src/gpio.h"
+ 167              		.file 5 "./src/led.h"
+ 168              		.file 6 "Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS/cmsis_os.h"
+ARM GAS  /tmp/ccnH2hLv.s 			page 5
+
+
+DEFINED SYMBOLS
+                            *ABS*:0000000000000000 led.c
+     /tmp/ccnH2hLv.s:16     .text.led_on:0000000000000000 $t
+     /tmp/ccnH2hLv.s:24     .text.led_on:0000000000000000 led_on
+     /tmp/ccnH2hLv.s:52     .text.led_off:0000000000000000 $t
+     /tmp/ccnH2hLv.s:59     .text.led_off:0000000000000000 led_off
+     /tmp/ccnH2hLv.s:86     .text.led_toggle:0000000000000000 $t
+     /tmp/ccnH2hLv.s:93     .text.led_toggle:0000000000000000 led_toggle
+     /tmp/ccnH2hLv.s:120    .text.led_blink:0000000000000000 $t
+     /tmp/ccnH2hLv.s:127    .text.led_blink:0000000000000000 led_blink
+
+UNDEFINED SYMBOLS
+osDelay
