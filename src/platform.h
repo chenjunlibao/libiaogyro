@@ -25,6 +25,10 @@ extern spi_t spi_dev;
 /*LED*/
 extern led_t led_dev;
 
+/*CAN*/
+extern CAN_HandleTypeDef hcan;
+extern can_dev_t can_dev;
+
 
 #endif
 

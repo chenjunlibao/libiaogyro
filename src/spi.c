@@ -1,7 +1,6 @@
 #include "spi.h"
 #include <string.h>
 
-static osMutexId spi_mutex;
 osMutexDef(spi_mutex);
 
 void spi_init(spi_t *spi)
