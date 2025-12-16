@@ -14,3 +14,15 @@ can_dev_t can_dev = {
     .handle = &hcan,
     .name = "CAN",
 };
+
+xv7001bb_dev_t xv700_dev = {
+    .spi = &spi_dev,
+    .base = {
+        .angle = 0,
+        .angle_speed = 0,
+        .temperature = 0,
+        .driver = &xv7001bb_driver,
+        .bias = 0,
+    },
+    .ss_pin = {GPIOB, GPIO_PIN_12},
+};

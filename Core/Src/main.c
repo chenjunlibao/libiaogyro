@@ -306,7 +306,7 @@ void StartDefaultTask(void const * argument)
   board_main();
   for(;;)
   {
-    
+
   }
   /* USER CODE END 5 */
 }

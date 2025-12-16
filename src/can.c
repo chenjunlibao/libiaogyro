@@ -1,6 +1,5 @@
 #include "can.h"
 #include <string.h>
-#include "platform.h"
 #include "led.h"
 
 typedef struct {
@@ -54,7 +53,7 @@ void can_init(can_dev_t *can)
     HAL_CAN_Start(can->handle);
 
     //enale fifo0 receive interrupt
-    HAL_CAN_ActivateNotification(can->handle, CAN_IT_RX_FIFO0_MSG_PENDING);
+    //HAL_CAN_ActivateNotification(can->handle, CAN_IT_RX_FIFO0_MSG_PENDING);
 }
 
 int8_t can_send(can_dev_t *can, uint8_t *data, uint8_t len)
@@ -125,7 +124,7 @@ static void can_tx_thread(const void *arg)
     // }
     for(;;)
     {
-        led_blink(&led_dev);
+        
     }
 }
 

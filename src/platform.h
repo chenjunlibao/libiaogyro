@@ -17,6 +17,7 @@
 #include "spi.h"
 #include "led_io.h"
 #include "led.h"
+#include "xv7001bb.h"
 
 /*SPI*/
 extern SPI_HandleTypeDef hspi2;
@@ -29,6 +30,8 @@ extern led_t led_dev;
 extern CAN_HandleTypeDef hcan;
 extern can_dev_t can_dev;
 
+/*XV700*/
+extern xv7001bb_dev_t xv700_dev;
 
 #endif
 
