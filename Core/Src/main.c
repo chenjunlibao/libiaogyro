@@ -22,11 +22,7 @@
 
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
-#include "gpio.h"
-#include "spi.h"
-#include "platform.h"
-#include "led.h"
-#include "can.h"
+
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -102,8 +98,6 @@ int main(void)
   MX_CAN_Init();
   MX_SPI2_Init();
   /* USER CODE BEGIN 2 */
-  spi_init(&spi_dev);
-  can_init(&can_dev);
   /* USER CODE END 2 */
 
   /* USER CODE BEGIN RTOS_MUTEX */
@@ -133,7 +127,6 @@ int main(void)
 
   /* Start scheduler */
   osKernelStart();
-
   /* We should never get here as control is now taken by the scheduler */
 
   /* Infinite loop */
@@ -204,6 +197,7 @@ static void MX_CAN_Init(void)
   hcan.Instance = CAN1;
   hcan.Init.Prescaler = 4;
   hcan.Init.Mode = CAN_MODE_NORMAL;
+  //hcan.Init.Mode = CAN_MODE_LOOPBACK;
   hcan.Init.SyncJumpWidth = CAN_SJW_1TQ;
   hcan.Init.TimeSeg1 = CAN_BS1_5TQ;
   hcan.Init.TimeSeg2 = CAN_BS2_3TQ;
@@ -308,14 +302,11 @@ void StartDefaultTask(void const * argument)
 {
   /* USER CODE BEGIN 5 */
   /* Infinite loop */
-  
-  uint8_t data = 0x01;
+  extern void board_main();
+  board_main();
   for(;;)
   {
-    //gpio_toggle(&led_pin);
-    //led_blink(&led_dev);
-    spi_write(&spi_dev, &data, 1);
-    osDelay(500);
+    
   }
   /* USER CODE END 5 */
 }

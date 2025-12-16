@@ -43,6 +43,9 @@ $(SRC)/gpio.c \
 $(SRC)/platform.c \
 $(SRC)/led.c \
 $(SRC)/led_io.c \
+$(SRC)/board_main.c \
+$(SRC)/xv7001bb.c \
+$(SRC)/gyro_sensor.c \
 Core/Src/main.c \
 Core/Src/freertos.c \
 Core/Src/stm32f1xx_it.c \
