@@ -13,10 +13,12 @@ can_dev_t can_dev = {
     .filter_bank = 0,
     .handle = &hcan,
     .name = "CAN",
+    .id = 0x123,
 };
 
 xv7001bb_dev_t xv700_dev = {
     .spi = &spi_dev,
+    .can = &can_dev,
     .base = {
         .angle = 0,
         .angle_speed = 0,

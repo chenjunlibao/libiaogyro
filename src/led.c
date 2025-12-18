@@ -19,7 +19,7 @@ void led_toggle(led_t *led)
 void led_blink(led_t *led)
 {
     led_on(led);
-    osDelay(100);
+    osDelay(500);
     led_off(led);
-    osDelay(100);
+    osDelay(500);
 }

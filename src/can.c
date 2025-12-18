@@ -1,6 +1,5 @@
 #include "can.h"
 #include <string.h>
-#include "led.h"
 
 typedef struct {
     uint8_t data[CAN_MAX_FRAME_SIZE];
@@ -18,16 +17,21 @@ static osMutexDef(cantx_mutex);
 static osThreadId canrxTaskHandle;
 static osThreadId cantxTaskHandle;
 
+static uint8_t rxdata = {0};
+static uint8_t msg_avaliable = 0;
+
+
 static void can_rx_thread(const void *arg);
 static void can_tx_thread(const void *arg);
+
 
 void can_init(can_dev_t *can)
 {
     can->tx_mutex_id = osMutexCreate(osMutex(cantx_mutex));
     queue_handle = osMessageCreate(osMessageQ(queue), NULL);
 
-    osThreadDef(canrxTask, can_rx_thread, osPriorityNormal, 0, 128 * 4);
-    canrxTaskHandle = osThreadCreate(osThread(canrxTask), can);
+    // osThreadDef(canrxTask, can_rx_thread, osPriorityNormal, 0, 128 * 4);
+    // canrxTaskHandle = osThreadCreate(osThread(canrxTask), can);
 
     osThreadDef(cantxTask, can_tx_thread, osPriorityNormal, 0, 128 * 4);
     cantxTaskHandle = osThreadCreate(osThread(cantxTask), can);
@@ -78,7 +82,7 @@ int8_t can_raw_send(can_dev_t *can, uint8_t *data, uint8_t len)
         return -1;
     }
 
-    TxHeader.StdId = 0x123;
+    TxHeader.StdId = can->id;
     TxHeader.RTR = CAN_RTR_DATA;
     TxHeader.IDE = CAN_ID_STD;
     TxHeader.DLC = len;
@@ -106,7 +110,8 @@ void can_unlock(can_dev_t *can)
 //rewrite can callback
 void HAL_CAN_RxFifo0MsgPendingCallback(CAN_HandleTypeDef *hcan)
 {
-    osSignalSet(canrxTaskHandle, CAN_RX_SIGNAL);
+    HAL_CAN_GetRxMessage(hcan, CAN_RX_FIFO0, &RxHeader, &rxdata);
+    msg_avaliable = 1;
 }
 
 static void can_tx_thread(const void *arg)
@@ -122,35 +127,40 @@ static void can_tx_thread(const void *arg)
     //     vPortFree(msg);
     //     osDelay(1);
     // }
-    for(;;)
+    while (1)
     {
-        
+        // can_send(can, &data, 1);
+        // osDelay(500);
     }
+    
 }
 
 static void can_rx_thread(const void *arg)
 {
-    // can_dev_t *can = (can_dev_t *)arg;
-    // uint8_t rxData[8];
-    // rxData[0] = 0xaa;
-    // while (1)
-    // {
-    //     osSignalWait(CAN_RX_SIGNAL, osWaitForever);
-    //     while(HAL_CAN_GetRxFifoFillLevel(can->handle, CAN_RX_FIFO0) > 0)
-    //     {
-
-    //         can_msg_t *msg = pvPortMalloc(sizeof(can_msg_t));
-
-    //         HAL_CAN_GetRxMessage(can->handle, CAN_RX_FIFO0,&RxHeader, rxData);
-    //         msg->size = RxHeader.DLC;
-    //         memcpy(msg->data, rxData, RxHeader.DLC);
-
-    //         osMessagePut(queue_handle, (uint32_t)msg, 0);
-    //     }
-    // }
+    can_dev_t *can = (can_dev_t *)arg;
+    uint8_t rxData[8] = {0};
     while (1)
     {
-        
+        // while(HAL_CAN_GetRxFifoFillLevel(can->handle, CAN_RX_FIFO0) > 0)
+        // {
+
+        //     // can_msg_t *msg = pvPortMalloc(sizeof(can_msg_t));
+
+        //     // HAL_CAN_GetRxMessage(can->handle, CAN_RX_FIFO0,&RxHeader, rxData);
+        //     // msg->size = RxHeader.DLC;
+        //     // memcpy(msg->data, rxData, RxHeader.DLC);
+
+        //     // osMessagePut(queue_handle, (uint32_t)msg, 0);
+        //     HAL_CAN_GetRxMessage(can->handle, CAN_RX_FIFO0,&RxHeader, rxData);
+        //     can_send(can, rxData, RxHeader.DLC);
+        // }
+        // if (msg_avaliable == 1)
+        // {
+        //     HAL_CAN_GetRxMessage(can->handle, CAN_RX_FIFO0,&RxHeader, rxData);
+        //     can_send(can, rxData, RxHeader.DLC);
+        //     msg_avaliable = 0;
+        // }
+        // osDelay(100);
     }
     
 }

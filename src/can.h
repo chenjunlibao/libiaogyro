@@ -14,6 +14,7 @@ typedef struct {
     uint8_t filter_bank;
     char *name;
     osMutexId tx_mutex_id;
+    uint32_t id;
 } can_dev_t;
 
 /* CAN request frame */
