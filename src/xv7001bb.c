@@ -160,7 +160,6 @@ static void xv700_thread(const void *arg)
     xv7001bb_dev_t *dev = (xv7001bb_dev_t *) arg;
     //Handle zero offset
     xv700_calibrate_bias(dev);
-    uint8_t data = 0xaa;
     while (1)
     {
         xv7007bb_read_angle16(dev);
@@ -170,19 +169,23 @@ static void xv700_thread(const void *arg)
         xv7007bb_read_temp12(dev);
         xv700send_temp(dev);
         osDelay(SAMPL_T);
-
-        // led_toggle(&led_dev);
-        // spi_write(dev->spi, &data, 1);
-        // osDelay(500);
+        
     }
 }
 
 static void cal_angle(xv7001bb_dev_t *dev)
 {
-    float omega = dev->base.angle_speed;
-    float omega_corr = omega - dev->base.bias;
+    if(dev->base.angle_speed < ANSPEED_THRESHOLD && dev->base.angle_speed > -ANSPEED_THRESHOLD)
+    {
+        dev->base.angle += 0;
+    }
+    else
+    {
+        float omega = dev->base.angle_speed;
+        float omega_corr = omega - dev->base.bias;
 
-    dev->base.angle += omega_corr * (float)SAMPL_T / 1000;
+        dev->base.angle += omega_corr * (float)SAMPL_T / 1000;
+    }
 
     dev->base.angle = normalize_angle_180(dev->base.angle);
 }

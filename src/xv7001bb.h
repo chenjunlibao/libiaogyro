@@ -9,6 +9,7 @@
 //Angular velocity calculation constant
 #define XV700_SF_16BIT         70.0f
 #define XV700_SF_24BIT         71680.0f
+#define ANSPEED_THRESHOLD      0.1f
 
 #define ANGLE_ID               0x123
 #define TEMP_ID                0x124

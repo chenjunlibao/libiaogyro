@@ -1,4 +1,6 @@
 #include "can.h"
+#include "led.h"
+#include "platform.h"
 #include <string.h>
 
 typedef struct {
@@ -129,8 +131,7 @@ static void can_tx_thread(const void *arg)
     // }
     while (1)
     {
-        // can_send(can, &data, 1);
-        // osDelay(500);
+        led_blink(&led_dev);
     }
     
 }
